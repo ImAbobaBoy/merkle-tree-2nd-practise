@@ -17,11 +17,49 @@ class Tree {
     }
 
     addNode(node){
-        // TODO 1 Implement 
+        if (!this.root){
+            this.root = node;
+            return;
+        }
+        let current = this.root;
+        let newNode = node;
+        while (true){
+            if (newNode.data < current.data){
+                if (!current.left){
+                    current.left = newNode;
+                    return;
+                }
+                current = current.left;
+            } else {
+                if (!current.right){
+                    current.right = newNode;
+                    return;
+                }
+                current = current.right;
+            }
+        }
     }
 
     hasNode(data){
-        // TODO 2 Implement 
+        let current = this.root;
+        while (true){
+            if (!current){
+                return false;
+            }
+            if (data < current.data){
+                if (!current.left){
+                    return false;
+                }
+                current = current.left;
+            } else if (data > current.data){
+                if (!current.right){
+                    return false;
+                }
+                current = current.right;
+            } else if (data === current.data){
+                return true;
+            }
+        }
     }
 }
 
